@@ -1,0 +1,9 @@
+httpx
+jupyter-ai[all]
+jupyterlab
+mcp[cli]
+nbstripout
+numpy
+pandas
+requests
+
