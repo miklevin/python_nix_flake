@@ -87,7 +87,7 @@ Feel free to fork, submit issues, or send pull requests! This is a community-dri
 
 ## Credits
 
-Built with insights from exploring AI platforms and modern dev tools, with a little help from Grok 3 by xAI.
+Built with insights from exploring AI platforms and modern dev tools, with a little help from Grok 3 by xAI. Read the full [Python Nix Flake Article](http://localhost:4000/futureproof/python-nix-flake-uv/).
 
 ## License
 
