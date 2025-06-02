@@ -1,8 +1,8 @@
 # Python Nix Flake with UV Venv
 
-[![Nix Flake](https://img.shields.io/badge/Nix-Flake-blue.svg)](https://nixos.org) [![Python 3.13](https://img.shields.io/badge/Python-3.13-green.svg)](https://www.python.org) [![UV](https://img.shields.io/badge/UV-Enabled-orange.svg)](https://github.com/astral-sh/uv)
+[![Nix Flake](https://img.shields.io/badge/Nix-Flake-blue.svg)](https://nixos.org) [![Python 3.13](https://img.shields.io/badge/Python-3.13-green.svg)](https://www.python.org) [![UV](https://img.shields.io/badge/UV-Enabled-orange.svg)](https://github.com/astral-sh/uv) [![AI Ready](https://img.shields.io/badge/AI-Ready-purple.svg)](https://github.com/miklevin/python_nix_flake)
 
-A modern, reproducible Python development environment using Nix Flakes and `uv` for fast dependency management and virtual environments. This flake replaces traditional `pip` and `virtualenv` with `uv`, streamlining setup across Linux, macOS, and Windows (via WSL), with optional CUDA support. Perfect for AI projects, data science, or any Python workflow needing JupyterLab and beyond.
+A modern, reproducible Python development environment using Nix Flakes and `uv` for fast dependency management and virtual environments. This flake replaces traditional `pip` and `virtualenv` with `uv`, streamlining setup across Linux, macOS, and Windows (via WSL), with optional CUDA support. Perfect for AI projects, data science, or any Python workflow needing JupyterLab and beyond. Features specialized shells optimized for both human developers and AI assistants.
 
 ## Features
 
@@ -12,6 +12,13 @@ A modern, reproducible Python development environment using Nix Flakes and `uv` 
 - **JupyterLab Ready**: Launch JupyterLab with `start` and stop it with `stop`.
 - **CUDA Support**: Auto-detects and configures CUDA on Linux if available.
 - **Customizable**: Add your Python dependencies in `requirements.txt`.
+- **AI-Optimized**: Multiple shell configurations for different use cases:
+  - Interactive shell with full banners and feedback for humans
+  - Quiet shell with minimal output for AI assistants and automation
+
+## Want More Detail?
+
+If you're looking for a more comprehensive guide with detailed explanations, check out the original pip-oriented version at [https://github.com/miklevin/darwinix](https://github.com/miklevin/darwinix). That repository goes into much more detail about the concepts and setup process. This `uv`-based version assumes you know what you're doing and want a streamlined, modern approach.
 
 ## Prerequisites
 
@@ -27,10 +34,18 @@ A modern, reproducible Python development environment using Nix Flakes and `uv` 
    ```
 
 2. **Enter the Development Shell**:
+   
+   For human interactive use with welcome messages and ASCII art banner:
    ```bash
    nix develop
    ```
-   This sets up the virtual environment with `uv` and installs dependencies from `requirements.txt`.
+   
+   For AI assistants or automation (minimal output):
+   ```bash
+   nix develop .#quiet
+   ```
+   
+   Both shells set up the virtual environment with `uv` and install dependencies from `requirements.txt`.
 
 3. **Start JupyterLab**:
    ```bash
@@ -45,7 +60,7 @@ A modern, reproducible Python development environment using Nix Flakes and `uv` 
 
 ## Example `requirements.txt`
 
-Here’s a sample to get you started with data science and AI tools:
+Here's a sample to get you started with data science and AI tools:
 
 ```
 httpx
@@ -74,6 +89,38 @@ requests
 - **Add Packages**: Edit `requirements.txt` and re-run `nix develop`.
 - **CUDA**: Automatically enabled on Linux if `nvidia-smi` is detected.
 - **OS-Specific Tweaks**: The flake adapts to Linux or macOS automatically.
+
+## Working with AI Assistants
+
+The flake provides specialized support for AI coding assistants through the `.#quiet` shell:
+
+### Benefits for AI Tools
+
+- **Clean Output**: Eliminates verbose banners and messages that consume limited context windows
+- **Enhanced Visibility**: Makes error messages and diagnostics easier to identify
+- **Resource Efficiency**: Perfect for automated workflows, CI/CD pipelines, and AI-driven tasks
+
+### Recommended Command Pattern
+
+When using AI assistants, use this pattern for predictable output:
+
+```bash
+cd ~/repos/python_nix_flake && pkill -f "<process_pattern>" || true && nix develop .#quiet --command bash -c "<your_command>"
+```
+
+For example, to run a Python script with clean output:
+
+```bash
+cd ~/repos/python_nix_flake && nix develop .#quiet --command python my_script.py
+```
+
+Or to check installed packages:
+
+```bash
+cd ~/repos/python_nix_flake && nix develop .#quiet --command bash -c "pip list | grep numpy"
+```
+
+This approach ensures AI tools get exactly the information they need without unnecessary clutter.
 
 ## Troubleshooting
 
