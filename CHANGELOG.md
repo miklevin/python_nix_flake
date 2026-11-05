@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [2.1.0] - 2026-11-05
+
+### Added
+- **Nix Rpath Shim**: Added `nix() { LD_LIBRARY_PATH="" command nix "$@"; }` to `baseEnvSetup` so child `nix` invocations inside `.#default` and `.#quiet` shells never collide with `LD_LIBRARY_PATH`
+- **2026 Architecture Note**: Linked `README.md` to the pure-`pip` sibling (`pipulate/levinix`) and the full production Software Von Neumann Probe (`pipulate/pipulate`)
+
+### Fixed
+- **Darwin & Nixpkgs Compatibility (PR #1 by `@nolith`)**: Replaced deprecated `python313Full` with `python313` and wrapped `CUDA_HOME` / `cudatoolkit` setup in `pkgs.lib.optionalString pkgs.stdenv.isLinux` so `aarch64-darwin` evaluations succeed cleanly
+
 ## [2.0.0] - 2025-01-03
 
 ### Added

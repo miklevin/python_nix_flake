@@ -145,6 +145,9 @@
             export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
           fi
           ''}
+          nix() {
+            LD_LIBRARY_PATH="" command nix "$@"
+          }
         '';
 
         # Function to create shells for each OS

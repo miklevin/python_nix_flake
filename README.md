@@ -1,5 +1,7 @@
 # Python Nix Flake with UV Venv
 
+> **2026 Architecture Note:** This repository preserves the standalone **`uv`-accelerated** (`python313` + `.#default` / `.#quiet` dual-shell) reference extraction of the **Nix Flake** Python environment. For the minimal **pure `pip` + `virtualenv`** Magic Cookie bootstrapper, see **[pipulate/levinix](https://github.com/pipulate/levinix)**. For the full production **Software Von Neumann Probe** (with multi-door white-labeling, FastHTML/HTMX local server, and the Prompt Fu context compiler), see **[pipulate/pipulate](https://github.com/pipulate/pipulate)** (`pipulate.com` / `levinix.org` / `sunpug.io`).
+
 [![Nix Flake](https://img.shields.io/badge/Nix-Flake-blue.svg)](https://nixos.org) [![Python 3.13](https://img.shields.io/badge/Python-3.13-green.svg)](https://www.python.org) [![UV](https://img.shields.io/badge/UV-Enabled-orange.svg)](https://github.com/astral-sh/uv) [![AI Ready](https://img.shields.io/badge/AI-Ready-purple.svg)](https://github.com/miklevin/python_nix_flake)
 
 A modern, reproducible Python development environment using Nix Flakes and `uv` for fast dependency management and virtual environments. This flake replaces traditional `pip` and `virtualenv` with `uv`, streamlining setup across Linux, macOS, and Windows (via WSL), with optional CUDA support. Perfect for AI projects, data science, or any Python workflow needing JupyterLab and beyond. Features specialized shells optimized for both human developers and AI assistants.
