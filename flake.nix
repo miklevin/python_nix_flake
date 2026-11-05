@@ -55,7 +55,7 @@
         # Common packages that we want available in our environment
         # regardless of the operating system
         commonPackages = with pkgs; [
-          python313Full  # Python 3.13 interpreter
+          python313      # Python 3.13 interpreter
           uv             # Modern Python dependency manager replacing virtualenv and pip
           figlet         # For creating ASCII art welcome messages
           tmux           # Terminal multiplexer for managing sessions
@@ -137,12 +137,14 @@
           export PATH="$VIRTUAL_ENV/bin:$PATH"
           export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath commonPackages}:$LD_LIBRARY_PATH
 
+          ${pkgs.lib.optionalString pkgs.stdenv.isLinux ''
           # Set up CUDA env vars if available (no output message)
           if command -v nvidia-smi &> /dev/null; then
             export CUDA_HOME=${pkgs.cudatoolkit}
             export PATH=$CUDA_HOME/bin:$PATH
             export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
           fi
+          ''}
         '';
 
         # Function to create shells for each OS
